@@ -1,0 +1,36 @@
+.payment-status-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.paid-dot {
+  background-color: #28a745;
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.6);
+  animation: none;
+}
+
+.unpaid-dot {
+  background-color: #fd7e14;
+  box-shadow: 0 0 10px rgba(253, 126, 20, 0.7);
+  animation: blink 1.3s infinite ease-in-out;
+}
+
+.status-text {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}

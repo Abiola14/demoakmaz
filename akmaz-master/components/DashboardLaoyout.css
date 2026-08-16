@@ -1,0 +1,214 @@
+/* ═══════════════════════════════════════
+   ROOT LAYOUT
+═══════════════════════════════════════ */
+.dl-root {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f6fa;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════
+   OVERLAY (dims content when sidebar open)
+═══════════════════════════════════════ */
+.dl-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 200;
+}
+
+/* ═══════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════ */
+.dl-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 240px;
+  background: #1e2a3b;
+  display: flex;
+  flex-direction: column;
+  z-index: 300;
+
+  /* Hidden off-screen by default */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.dl-sidebar--open {
+  transform: translateX(0);
+}
+
+/* Brand / Logo */
+.dl-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dl-sidebar__brand img {
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.dl-sidebar__brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+/* Nav links */
+.dl-sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.dl-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  color: #a0aec0;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dl-sidebar__link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.dl-sidebar__link--active {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.dl-sidebar__link--active:hover {
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+
+/* Footer / Logout */
+.dl-sidebar__footer {
+  padding: 16px 12px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dl-sidebar__logout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(220, 38, 38, 0.15);
+  color: #fc8181;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dl-sidebar__logout:hover {
+  background-color: rgba(220, 38, 38, 0.3);
+  color: #fff5f5;
+}
+
+/* ═══════════════════════════════════════
+   MAIN AREA
+═══════════════════════════════════════ */
+.dl-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* prevents flex overflow */
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════
+   TOP BAR
+═══════════════════════════════════════ */
+.dl-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Hamburger button */
+.dl-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #1e2a3b;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dl-hamburger:hover {
+  background-color: #f1f5f9;
+}
+
+/* ═══════════════════════════════════════
+   PAGE CONTENT
+═══════════════════════════════════════ */
+.dl-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* ═══════════════════════════════════════
+   DASHBOARD CARD UTILITIES
+   (keep your existing card hover effects)
+═══════════════════════════════════════ */
+.dashboard-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hover-effect {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-hover:hover {
+  transform: scale(1.03);
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}

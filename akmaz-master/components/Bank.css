@@ -1,0 +1,595 @@
+/* ═══════════════════════════════════════
+   BANK DEPOSITS PAGE
+═══════════════════════════════════════ */
+.bk-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px 56px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* ── Header ── */
+.bk-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+  flex-wrap: wrap;
+}
+
+.bk-header__icon {
+  width: 52px;
+  height: 52px;
+  background: #fef3c7;
+  color: #d97706;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bk-header__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.bk-header__sub {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 2px 0 0;
+}
+
+/* ── Alert ── */
+.bk-alert {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.bk-alert button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.bk-alert button:hover { opacity: 1; }
+.bk-alert--success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.bk-alert--danger  { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+/* ── Summary Cards ── */
+.bk-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.bk-stat {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bk-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.bk-stat__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bk-stat__icon--total     { background: #fef3c7; color: #d97706; }
+.bk-stat__icon--confirmed { background: #dcfce7; color: #16a34a; }
+.bk-stat__icon--pending   { background: #fef2f2; color: #dc2626; }
+
+.bk-stat__body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+
+.bk-stat__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bk-stat__value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Auditor notice ── */
+.bk-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-size: 14px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════
+   ADD FORM CARD
+═══════════════════════════════════════ */
+.bk-form-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border: 1px solid #f0f0f0;
+  border-top: 4px solid #d97706;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.bk-form-card__header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 20px;
+  background: #fffbeb;
+  border-bottom: 1px solid #fde68a;
+  font-size: 15px;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.bk-form {
+  padding: 20px;
+}
+
+.bk-form__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.bk-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bk-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bk-field input {
+  padding: 10px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #1e293b;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bk-field input:focus {
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12);
+}
+
+.bk-field input::placeholder { color: #94a3b8; }
+
+.bk-form__footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bk-btn-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 24px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: #d97706;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.bk-btn-submit:hover:not(:disabled) {
+  background: #b45309;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+}
+
+.bk-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner inside button */
+.bk-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  animation: bk-spin 0.7s linear infinite;
+}
+
+@keyframes bk-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════
+   SEARCH BAR
+═══════════════════════════════════════ */
+.bk-search-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.bk-search-input {
+  flex: 1;
+  min-width: 220px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.bk-search-icon {
+  position: absolute;
+  left: 11px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.bk-search-input input {
+  width: 100%;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 9px 32px 9px 34px;
+  font-size: 14px;
+  color: #1e293b;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.bk-search-input input:focus {
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12);
+}
+
+.bk-search-input input::placeholder { color: #94a3b8; }
+
+.bk-search-clear {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+.bk-search-clear:hover { color: #64748b; }
+
+/* ── Date Filters ── */
+.bk-date-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  flex-wrap: wrap;
+}
+
+.bk-date-filters select {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #1e293b;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ═══════════════════════════════════════
+   TABLE CARD
+═══════════════════════════════════════ */
+.bk-table-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+}
+
+.bk-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bk-loading {
+  padding: 48px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 15px;
+}
+
+.bk-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-width: 700px;
+}
+
+.bk-table thead tr { background: #1e2a3b; }
+
+.bk-table thead th {
+  padding: 13px 16px;
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+  white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.bk-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s;
+}
+
+.bk-table tbody tr:nth-child(even) { background: #f8fafc; }
+.bk-table tbody tr:hover           { background: #fffbeb; }
+
+.bk-table td {
+  padding: 13px 16px;
+  color: #374151;
+  font-size: 15px;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 1px solid #e2e8f0;
+}
+
+.bk-table__sn     { color: #94a3b8; font-size: 14px; width: 40px; }
+.bk-table__name   { font-weight: 600; color: #1e293b; }
+.bk-table__amount { font-weight: 700; color: #d97706; }
+.bk-table__desc   { max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+
+.bk-table__empty {
+  text-align: center;
+  padding: 56px 20px !important;
+  color: #94a3b8;
+  font-size: 15px;
+}
+
+/* ── Status badges ── */
+.bk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.bk-badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bk-badge--confirmed            { background: #dcfce7; color: #166534; }
+.bk-badge--confirmed .bk-badge__dot { background: #16a34a; }
+
+.bk-badge--pending              { background: #fef9ec; color: #92400e; }
+.bk-badge--pending .bk-badge__dot   { background: #f59e0b; }
+
+/* Confirmed-by cell */
+.bk-confirmed-by {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  font-weight: 600;
+  color: #16a34a;
+}
+
+.bk-confirmed-by small {
+  font-weight: 400;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* ── Action buttons ── */
+.bk-confirm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 13px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1.5px solid #86efac;
+  background: #dcfce7;
+  color: #166534;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.bk-confirm-btn:hover {
+  background: #bbf7d0;
+  transform: translateY(-1px);
+}
+
+.bk-delete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 13px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1.5px solid #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.bk-delete-btn:hover {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+.bk-confirmed-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #16a34a;
+}
+
+/* ── Table footer ── */
+.bk-table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: #1e2a3b;
+  color: #e2e8f0;
+  font-size: 15px;
+  font-weight: 500;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.bk-table-footer__amount {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .bk-page          { padding: 14px 16px 48px; }
+  .bk-header__title { font-size: 20px; }
+
+  .bk-summary {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  .bk-stat { padding: 14px 12px; gap: 10px; }
+  .bk-stat__value { font-size: 15px; }
+
+  .bk-search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bk-search-input { width: 100%; }
+
+  .bk-date-filters { width: 100%; }
+  .bk-date-filters select { flex: 1; }
+
+  .bk-form__fields  { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .bk-form__footer  { justify-content: stretch; }
+  .bk-btn-submit    { width: 100%; justify-content: center; }
+
+  .bk-table-footer  { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+
+@media (max-width: 480px) {
+  .bk-page          { padding: 12px 12px 40px; }
+  .bk-header__icon  { width: 44px; height: 44px; border-radius: 11px; }
+  .bk-header__title { font-size: 18px; }
+
+  .bk-summary       { grid-template-columns: 1fr; }
+  .bk-form__fields  { grid-template-columns: 1fr; }
+
+  .bk-table          { font-size: 15px; }
+  .bk-table td       { font-size: 15px; padding: 11px 13px; }
+  .bk-table thead th { font-size: 13px; padding: 12px 13px; }
+}
+/* Add this to your Bank.css */
+
+.bk-print-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #1e3a5f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.bk-print-btn:hover {
+  background: #16305a;
+}
