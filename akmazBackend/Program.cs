@@ -7,9 +7,11 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // ================= SERVICES =================
+
 builder.Services.AddControllers();
 
-// Database
+// ================= DATABASE =================
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -17,47 +19,62 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
-// ✅ FIXED CORS - Specific to your React app
+// ================= CORS =================
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
 
-// JWT Authentication
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+// ================= JWT AUTHENTICATION =================
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.RequireHttpsMetadata = false;
         options.SaveToken = true;
+
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = false,
             ValidateAudience = false,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
+
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("THIS_IS_MY_SUPER_SECRET_KEY_12345"))
+                Encoding.UTF8.GetBytes(
+                    "THIS_IS_MY_SUPER_SECRET_KEY_12345"
+                )
+            )
         };
     });
 
 builder.Services.AddAuthorization();
 
+// ================= APP =================
+
 var app = builder.Build();
 
-// ================= MIDDLEWARE - IMPORTANT ORDER =================
-app.UseHttpsRedirection();
+// ================= MIDDLEWARE =================
 
-app.UseCors("AllowFrontend");     // ← Must be before Authentication
+// IMPORTANT: No UseHttpsRedirection for local HTTP testing
+
+app.UseCors("AllowFrontend");
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+// ================= RUN =================
 
 app.Run();
