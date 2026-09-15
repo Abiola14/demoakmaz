@@ -1,15 +1,17 @@
 /* ═══════════════════════════════════════
    INVENTORY PAGE
 ═══════════════════════════════════════ */
+
 .inv-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 16px 20px 48px;
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
   box-sizing: border-box;
 }
 
 /* ── Header ── */
+
 .inv-header {
   display: flex;
   align-items: center;
@@ -46,6 +48,7 @@
 }
 
 /* ── Alert ── */
+
 .inv-alert {
   display: flex;
   align-items: flex-start;
@@ -69,7 +72,9 @@
   flex-shrink: 0;
 }
 
-.inv-alert button:hover { opacity: 1; }
+.inv-alert button:hover {
+  opacity: 1;
+}
 
 .inv-alert--success {
   background: #ecfdf5;
@@ -84,6 +89,7 @@
 }
 
 /* ── Auditor notice ── */
+
 .inv-notice {
   display: flex;
   align-items: center;
@@ -101,6 +107,7 @@
 /* ═══════════════════════════════════════
    ADD / EDIT FORM CARD
 ═══════════════════════════════════════ */
+
 .inv-form-card {
   background: #ffffff;
   border-radius: 14px;
@@ -190,7 +197,9 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-.inv-field input::placeholder { color: #94a3b8; }
+.inv-field input::placeholder {
+  color: #94a3b8;
+}
 
 .inv-form__footer {
   display: flex;
@@ -211,9 +220,12 @@
   white-space: nowrap;
 }
 
-.inv-form__live-total strong { color: #15803d; }
+.inv-form__live-total strong {
+  color: #15803d;
+}
 
-/* Buttons */
+/* ── Buttons ── */
+
 .inv-btn {
   display: inline-flex;
   align-items: center;
@@ -241,51 +253,166 @@
 }
 
 /* ═══════════════════════════════════════
-   SEARCH
+   TOOLBAR
 ═══════════════════════════════════════ */
-.inv-search-wrap {
-  margin-bottom: 18px;
-}
 
-.inv-search {
+.inv-toolbar {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #fff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 10px 14px;
-  max-width: 360px;
-  width: 100%;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  box-sizing: border-box;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
 }
 
-.inv-search:focus-within {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+/* ── Search ── */
+
+.inv-search {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .inv-search__icon {
+  position: absolute;
+  left: 11px;
   color: #94a3b8;
-  flex-shrink: 0;
+  pointer-events: none;
 }
 
 .inv-search input {
-  border: none;
-  outline: none;
-  font-size: 15px;
-  color: #1e293b;
-  background: transparent;
   width: 100%;
-  min-width: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 9px 32px 9px 34px;
+  font-size: 0.875rem;
+  color: #0f172a;
+  font-family: inherit;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
 }
 
-.inv-search input::placeholder { color: #94a3b8; }
+.inv-search input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.inv-search input::placeholder {
+  color: #94a3b8;
+}
+
+.inv-search__clear {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.inv-search__clear:hover {
+  color: #64748b;
+}
+
+/* ── Supplier filter dropdown ── */
+
+.inv-filter-select select {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 0.85rem;
+  color: #334155;
+  font-family: inherit;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.inv-filter-select select:focus {
+  border-color: #2563eb;
+}
+
+/* ── Date filters ── */
+
+.inv-date-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+.inv-date-filters select {
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+  color: #334155;
+  font-family: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ── Clear all button ── */
+
+.inv-clear-all-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.inv-clear-all-btn:hover {
+  background: #fee2e2;
+}
+
+/* ── Print button ── */
+
+.inv-print-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #1e3a5f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.inv-print-btn:hover {
+  background: #16305a;
+  transform: translateY(-1px);
+}
 
 /* ═══════════════════════════════════════
    TABLE CARD
 ═══════════════════════════════════════ */
+
 .inv-table-card {
   background: #fff;
   border-radius: 14px;
@@ -336,8 +463,13 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.inv-table tbody tr:hover { background: #f8fafc; }
-.inv-table tbody tr:last-child { border-bottom: none; }
+.inv-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.inv-table tbody tr:last-child {
+  border-bottom: none;
+}
 
 .inv-table__row--editing {
   background: #fefce8 !important;
@@ -352,9 +484,23 @@
   white-space: nowrap;
 }
 
-.inv-table__sn    { color: #94a3b8; font-size: 14px; width: 44px; }
-.inv-table__name  { font-weight: 600; color: #1e293b; }
-.inv-table__total { font-weight: 700; color: #15803d; }
+.inv-table__sn {
+  color: #94a3b8;
+  font-size: 14px;
+  width: 44px;
+}
+
+.inv-table__name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.inv-table__total {
+  font-weight: 700;
+  color: #15803d;
+}
+
+/* ── Empty table ── */
 
 .inv-table__empty {
   text-align: center;
@@ -373,7 +519,8 @@
   font-size: 15px;
 }
 
-/* Modified by cell */
+/* ── Modified by cell ── */
+
 .inv-modified {
   display: flex;
   flex-direction: column;
@@ -388,7 +535,8 @@
   font-size: 13px;
 }
 
-/* Edit button */
+/* ── Edit button ── */
+
 .inv-edit-btn {
   display: inline-flex;
   align-items: center;
@@ -422,7 +570,10 @@
   border-color: #f87171;
 }
 
-/* ── Grand Total Footer ── */
+/* ═══════════════════════════════════════
+   GRAND TOTAL FOOTER
+═══════════════════════════════════════ */
+
 .inv-table-footer {
   display: flex;
   align-items: center;
@@ -451,8 +602,13 @@
     padding: 14px 16px 40px;
   }
 
-  .inv-header__title { font-size: 20px; }
-  .inv-header__sub   { font-size: 14px; }
+  .inv-header__title {
+    font-size: 20px;
+  }
+
+  .inv-header__sub {
+    font-size: 14px;
+  }
 
   .inv-form {
     padding: 14px;
@@ -463,8 +619,9 @@
     gap: 10px;
   }
 
-  /* Inputs stay at 15px */
-  .inv-field input { font-size: 15px; }
+  .inv-field input {
+    font-size: 15px;
+  }
 
   .inv-form__footer {
     flex-direction: column;
@@ -483,7 +640,23 @@
   }
 
   .inv-search {
-    max-width: 100%;
+    min-width: 100%;
+    flex-basis: 100%;
+  }
+
+  .inv-date-filters {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .inv-date-filters select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .inv-clear-all-btn,
+  .inv-print-btn {
+    flex-shrink: 0;
   }
 
   .inv-table-footer {
@@ -493,7 +666,9 @@
     font-size: 14px;
   }
 
-  .inv-table-footer__amount { font-size: 17px; }
+  .inv-table-footer__amount {
+    font-size: 17px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -501,153 +676,82 @@
     padding: 12px 12px 32px;
   }
 
-  .inv-header__title { font-size: 18px; }
-  .inv-header__icon  { width: 44px; height: 44px; border-radius: 11px; }
+  .inv-header {
+    gap: 10px;
+    margin-bottom: 22px;
+  }
 
-  /* 1-col form so labels and inputs are never cramped */
+  .inv-header__title {
+    font-size: 18px;
+  }
+
+  .inv-header__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+  }
+
+  /* 1-column form */
   .inv-form__fields {
     grid-template-columns: 1fr;
   }
 
-  /* Table scrolls horizontally — font stays at 15px */
-  .inv-table          { font-size: 15px; }
-  .inv-table td       { font-size: 15px; padding: 11px 13px; }
-  .inv-table thead th { font-size: 13px; padding: 12px 13px; }
+  /* Toolbar */
+  .inv-toolbar {
+    gap: 8px;
+  }
 
-  .inv-modified       { font-size: 14px; }
-  .inv-modified small { font-size: 13px; }
-  .inv-edit-btn       { font-size: 13px; }
-  .inv-notice         { font-size: 14px; }
-}
-/* Add these to your Inventory.css */
+  .inv-search {
+    min-width: 100%;
+  }
 
-/* ── Toolbar (search + filters + print in one row) ── */
-.inv-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+  .inv-date-filters {
+    width: 100%;
+    justify-content: space-between;
+  }
 
-/* ── Search ── */
-.inv-search {
-  flex: 1;
-  min-width: 200px;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
+  .inv-date-filters select {
+    font-size: 13px;
+  }
 
-.inv-search__icon {
-  position: absolute;
-  left: 11px;
-  color: #94a3b8;
-  pointer-events: none;
-}
+  .inv-clear-all-btn {
+    flex: 1;
+    justify-content: center;
+  }
 
-.inv-search input {
-  width: 100%;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 9px 32px 9px 34px;
-  font-size: 0.875rem;
-  color: #0f172a;
-  font-family: inherit;
-  background: #fff;
-  outline: none;
-  transition: border-color 0.15s;
-}
+  .inv-print-btn {
+    flex: 1;
+    justify-content: center;
+  }
 
-.inv-search input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
-}
+  /* Table scrolls horizontally */
+  .inv-table {
+    font-size: 15px;
+  }
 
-.inv-search__clear {
-  position: absolute;
-  right: 8px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #94a3b8;
-  display: flex;
-  align-items: center;
-  padding: 2px;
-}
-.inv-search__clear:hover { color: #64748b; }
+  .inv-table td {
+    font-size: 15px;
+    padding: 11px 13px;
+  }
 
-/* ── Supplier filter dropdown ── */
-.inv-filter-select select {
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 9px 12px;
-  font-size: 0.85rem;
-  color: #334155;
-  font-family: inherit;
-  background: #fff;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-.inv-filter-select select:focus {
-  border-color: #2563eb;
-}
+  .inv-table thead th {
+    font-size: 13px;
+    padding: 12px 13px;
+  }
 
-/* ── Date filters ── */
-.inv-date-filters {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 6px 12px;
-}
+  .inv-modified {
+    font-size: 14px;
+  }
 
-.inv-date-filters select {
-  border: none;
-  outline: none;
-  font-size: 0.85rem;
-  color: #334155;
-  font-family: inherit;
-  background: transparent;
-  cursor: pointer;
-}
+  .inv-modified small {
+    font-size: 13px;
+  }
 
-/* ── Clear all button ── */
-.inv-clear-all-btn {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 8px 12px;
-  background: #fef2f2;
-  color: #dc2626;
-  border: 1px solid #fecaca;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s;
-  flex-shrink: 0;
-}
-.inv-clear-all-btn:hover { background: #fee2e2; }
+  .inv-edit-btn {
+    font-size: 13px;
+  }
 
-/* ── Print button ── */
-.inv-print-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: #1e3a5f;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s;
-  flex-shrink: 0;
+  .inv-notice {
+    font-size: 14px;
+  }
 }
-.inv-print-btn:hover { background: #16305a; }

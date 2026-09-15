@@ -677,3 +677,7 @@
   border-top: 1px solid #f1f5f9;
   background: #f8fafc;
 }
+.ex-stat__icon--rejected {
+  color: #dc2626;
+  background: #fef2f2;
+}

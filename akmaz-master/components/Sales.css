@@ -607,3 +607,43 @@
   background: transparent;
   cursor: pointer;
 }
+/* ============================================================
+   MODIFIED BY AUDIT INFORMATION
+   ============================================================ */
+
+.sl-modified-cell {
+  white-space: nowrap;
+}
+
+.sl-modified-cell strong {
+  display: block;
+  color: #15803d;
+  font-weight: 600;
+}
+
+.sl-modified-cell small {
+  display: block;
+  color: #94a3b8;
+  font-size: 12px;
+  margin-top: 2px;
+}
+/* ============================================================
+   CONFIRMED BY AUDIT INFORMATION
+   ============================================================ */
+
+.sl-confirmed-cell {
+  white-space: nowrap;
+}
+
+.sl-confirmed-cell strong {
+  display: block;
+  color: #15803d;
+  font-weight: 600;
+}
+
+.sl-confirmed-cell small {
+  display: block;
+  color: #94a3b8;
+  font-size: 12px;
+  margin-top: 2px;
+}
